@@ -13,7 +13,7 @@ database:
   redis:
     mode: single
     addrs:
-      - redis-master:6379
+    - redis-master:6379
     password:
     enableTLS: false
     insecureSkipVerify: false
@@ -46,8 +46,8 @@ storage:
       memoryLimit: 2048
       maxFlushers: 64
       maxParallelParts: 64
-      dirMode: 0777
-      fileMode: 0666
+      dirMode: 777
+      fileMode: 666
       listType: 1
       readAheadKB: 32768
       readAheadLargeKB: 131072
@@ -182,22 +182,20 @@ worker:
         minFreeGpu: 0
         minFreeMemory: 32Gi
         sharedMemoryLimitPct: 100%
-    # example gpu worker pool
-    # nvidia:
-    #   mode: local
-    #   gpuType: any
-    #   runtime: nvidia
-    #   jobSpec:
-    #     nodeSelector: {}
-    #   poolSizing:
-    #     defaultWorkerCpu:
-    #     defaultWorkerGpuType: ""
-    #     defaultWorkerMemory:
-    #     minFreeCpu:
-    #     minFreeGpu:
-    #     minFreeMemory:
-    #     sharedMemoryLimitPct: 100%
-  # global pool attributes
+    nvidia-a10g:
+      mode: local
+      gpuType: nvidia-a10g
+      runtime: nvidia
+      jobSpec:
+        nodeSelector: {}
+      poolSizing:
+        defaultWorkerCpu: 4000m
+        defaultWorkerGpuType: "nvidia-a10g"
+        defaultWorkerMemory: 16Gi
+        minFreeCpu: 2000m
+        minFreeGpu: 0
+        minFreeMemory: 8Gi
+        sharedMemoryLimitPct: 100%
   useHostResolvConf: true
   hostNetwork: false
   useGatewayServiceHostname: true
