@@ -193,7 +193,7 @@ worker:
         defaultWorkerGpuType: "nvidia-a10g"
         defaultWorkerMemory: 16Gi
         minFreeCpu: 2000m
-        minFreeGpu: 0
+        minFreeGpu: 1
         minFreeMemory: 8Gi
         sharedMemoryLimitPct: 100%
   useHostResolvConf: true
